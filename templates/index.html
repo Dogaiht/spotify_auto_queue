@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Queue — Spotify</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="wrap">
+
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark"></span>
+      <div>
+        <h1>Auto Queue</h1>
+        <p class="brand-sub">encadeador de faixas para o spotify</p>
+      </div>
+    </div>
+    <div id="auth-area" class="auth-area"></div>
+  </header>
+
+  <section id="now-playing" class="now-playing hidden">
+    <div class="np-thumb">
+      <img id="np-image" src="" alt="">
+      <span id="np-pulse" class="np-pulse"></span>
+    </div>
+    <div class="np-info">
+      <p class="np-eyebrow">agora tocando</p>
+      <p id="np-name" class="np-name">—</p>
+      <p id="np-artist" class="np-artist">—</p>
+    </div>
+    <button id="monitor-toggle" class="monitor-toggle" disabled>
+      <span id="monitor-toggle-label">iniciar monitoramento</span>
+    </button>
+  </section>
+
+  <main id="app-main" class="app-main hidden">
+
+    <section class="panel rail-panel">
+      <div class="panel-head">
+        <h2>Regras</h2>
+        <span id="rules-count" class="count-pill">0</span>
+      </div>
+
+      <div id="rules-list" class="rules-list">
+        <p class="empty-state">Nenhuma regra cadastrada ainda. Crie uma ao lado —&gt;</p>
+      </div>
+    </section>
+
+    <section class="panel new-rule-panel">
+      <div class="panel-head">
+        <h2>Nova regra</h2>
+      </div>
+
+      <div class="rule-form">
+        <div class="field">
+          <label>Quando esta música tocar</label>
+          <span class="field-hint">gatilho</span>
+          <input type="text" id="input-gatilho" placeholder="Buscar música ou artista...">
+          <div id="results-gatilho" class="search-results"></div>
+          <div id="picked-gatilho" class="picked-track hidden"></div>
+        </div>
+
+        <div class="field-connector">→</div>
+
+        <div class="field">
+          <label>Adicionar esta na fila</label>
+          <span class="field-hint">próxima</span>
+          <input type="text" id="input-fila" placeholder="Buscar música ou artista...">
+          <div id="results-fila" class="search-results"></div>
+          <div id="picked-fila" class="picked-track hidden"></div>
+        </div>
+
+        <button id="save-rule" class="save-rule" disabled>Salvar regra</button>
+      </div>
+    </section>
+
+  </main>
+
+  <section id="login-gate" class="login-gate hidden">
+    <div class="login-card">
+      <span class="brand-mark large"></span>
+      <h2>Conecte sua conta do Spotify</h2>
+      <p>Para monitorar sua reprodução e gerenciar a fila, o Auto Queue precisa de acesso à sua conta.</p>
+      <a href="/login" class="connect-btn">Conectar ao Spotify</a>
+    </div>
+  </section>
+
+</div>
+
+<script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
